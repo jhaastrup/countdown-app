@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 const Countdown = () => {
     const [timeLeft, setTimeLeft] = useState({});
- 
 
     useEffect(() => {
         const targetDate = new Date('September 27, 2024 00:00:00').getTime();
@@ -24,10 +23,12 @@ const Countdown = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const emojis = ['🥰', '💕', '❤️', '😍', '😘'];
+
     return (
-        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 to-pink-500">
+        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 to-pink-500 relative">
             <div className="fixed inset-0 flex justify-center items-center">
-                <div className="text-center p-6 bg-white rounded-lg shadow-lg">
+                <div className="text-center p-6 bg-white rounded-lg shadow-lg z-10">
                     <h1 className="text-2xl sm:text-4xl mb-5 text-indigo-600">
                         Days till <span className="text-pink-600 underline font-extrabold">Raro</span> is back
                     </h1>
@@ -39,6 +40,30 @@ const Countdown = () => {
                             </div>
                         ))}
                     </div>
+                </div>
+                {/* Emoji Background */}
+                <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+                    {Array.from({ length: 30 }).map((_, index) => {
+                        const left = Math.floor(Math.random() * 100); // Random left position (0% to 100%)
+                        const top = Math.floor(Math.random() * 100); // Random top position (0% to 100%)
+                        const emoji = emojis[Math.floor(Math.random() * emojis.length)]; // Random emoji
+
+                        return (
+                            <span
+                                key={index}
+                                className={`absolute`}
+                                style={{
+                                    left: `${left}%`,
+                                    top: `${top}%`,
+                                    transform: 'translate(-50%, -50%)', // Center the emoji at the position
+                                    fontSize: '2rem', // Adjust emoji size as needed
+                                    opacity: 0.2 // Set opacity for subtlety
+                                }}
+                            >
+                                {emoji}
+                            </span>
+                        );
+                    })}
                 </div>
             </div>
         </div>
