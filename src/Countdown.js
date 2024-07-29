@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Countdown = () => {
     const [timeLeft, setTimeLeft] = useState({});
+ 
 
     useEffect(() => {
         const targetDate = new Date('September 27, 2024 00:00:00').getTime();
@@ -24,22 +25,20 @@ const Countdown = () => {
     }, []);
 
     return (
-        <div className="text-center p-10 bg-white rounded-lg shadow-lg">
-            <h1 className="text-4xl mb-5 text-indigo-600">
-                Days till <span className="text-pink-600 underline font-extrabold">Raro</span> is back
-            </h1>
-            <div className="flex justify-center space-x-4">
-                <div className="bg-gray-200 p-5 rounded-md shadow-md">
-                    <span className="text-2xl text-red-500 font-bold">{timeLeft.days}</span> <span className="block text-lg">Days</span>
-                </div>
-                <div className="bg-gray-200 p-5 rounded-md shadow-md">
-                    <span className="text-2xl text-red-500 font-bold">{timeLeft.hours}</span> <span className="block text-lg">Hours</span>
-                </div>
-                <div className="bg-gray-200 p-5 rounded-md shadow-md">
-                    <span className="text-2xl text-red-500 font-bold">{timeLeft.minutes}</span> <span className="block text-lg">Minutes</span>
-                </div>
-                <div className="bg-gray-200 p-5 rounded-md shadow-md">
-                    <span className="text-2xl text-red-500 font-bold">{timeLeft.seconds}</span> <span className="block text-lg">Seconds</span>
+        <div className="flex justify-center items-center h-screen bg-gradient-to-r from-indigo-500 to-pink-500">
+            <div className="fixed inset-0 flex justify-center items-center">
+                <div className="text-center p-6 bg-white rounded-lg shadow-lg">
+                    <h1 className="text-2xl sm:text-4xl mb-5 text-indigo-600">
+                        Days till <span className="text-pink-600 underline font-extrabold">Raro</span> is back
+                    </h1>
+                    <div className="flex justify-center flex-wrap space-x-2 sm:space-x-4">
+                        {Object.entries(timeLeft).map(([key, value]) => (
+                            <div key={key} className="bg-gray-200 p-3 sm:p-5 rounded-md shadow-md m-1">
+                                <span className="text-lg sm:text-2xl text-red-500 font-bold">{value}</span>
+                                <span className="block text-sm sm:text-lg capitalize">{key}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
