@@ -7,7 +7,7 @@ const App = () => {
     const [isLastDay, setIsLastDay] = useState(false);
 
     useEffect(() => {
-        const targetDate = new Date('October 28, 2024 00:00:00').getTime();
+        const targetDate = new Date('November 12, 2024 00:00:00').getTime();
         const interval = setInterval(() => {
             const now = new Date().getTime();
             const distance = targetDate - now;
